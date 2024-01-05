@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% include "partials/header.html" %}
+{% block content %}
+    <main class="document-principal">
+        <section class="document-imagem">
+            <section class="imagem">
+                <div class="imagem-pdf">
+                    <iframe class='pdf-img' src="{% static "media/Lucas.pdf" %}" width="100%" height="780"> </iframe>
+                </div>
+            </section>
+        </section>
+    </main>
+</div>
+
+{% endblock content %}

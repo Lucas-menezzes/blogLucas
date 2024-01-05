@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Lucas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "styles/style.css" %}">
+
+</head>
+<body>
+    <div class="pagina-inicial">
+        <header class="cabecalho">
+            <div class="cabecalho-logo">
+                <img src="{% static "/assets/logo/logoLsm.png" %}" alt="Logo Lucas menezes" />
+            </div>
+            <div class="cabecalho__busca">
+                <div class="busca__fundo">
+                    <input class="busca__input" type="text" placeholder="O que você procura?">
+                    <img class="busca__icone" src="{%static '/assets/ícones/1x/search.png'%}" alt="ícone de search">
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+        <section class="menu-lateral">
+            <nav class="menu-lateral__navegacao">
+                <a href="{% url "home" %}"><img src="{% static '/assets/ícones/1x/3917033.png' %}" alt="Home" class="icone-home"> Home</a>
+                <a href="#"><img src="{% static '/assets/ícones/1x/project.png' %}"> Projetos </a>
+                <a href="{% url "contact" %}"><img src="{% static '/assets/ícones/1x/contact.png' %}"> Contato</a>
+                <a href="{% url "document" %}"><img src="{% static '/assets/ícones/1x/document.png' %}"> Documentos</a>
+            </nav>
+        </section>
+    </div>

@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% include "partials/header.html" %}
+
+<footer class="rodape">
+    <div class="rodape__icones">
+        {% comment %} Colocar em MEUS LINKS {% endcomment %}
+        <a href="https://www.linkedin.com/in/lucas-menezes-885ab1205/" target=”_blank” >
+            <img src="{% static "/assets/ícones/1x/linkedin.png" %}" alt="ícone twitter">
+        </a>
+    </div>
+    <p class="rodape__texto">Desenvolvido por Lucas Menezes</p>
+</footer>

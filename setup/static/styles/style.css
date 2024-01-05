@@ -88,6 +88,8 @@ table {
     margin-left: 0px;
     width: 200px;
     height: 100px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
         
 }
 .cabecalho__busca {
@@ -230,8 +232,9 @@ table {
 .imagem__imagem {
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)
-
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    height: 300px;
 }
 
 .imagem__info {
@@ -287,6 +290,7 @@ table {
     display: flex;
     flex-direction: column;
     padding-top: 10px;
+    justify-content: space-between;
     
 }
 
@@ -298,6 +302,27 @@ table {
     text-decoration: none;
     color: #000000;
     font-size: 24px;
+}
+
+.main-contact{
+    display:flex;
+    justify-content: space-between;
+}
+.contact-info{
+    margin-right: 10px;
+    font-family: 'consolas Font', sans-serif;
+    align-items: center;
+    display: flex;
+
+    color: #000000;
+    font-size: 20px;
+
+}
+.contact-info img{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    margin-left: 20px;
 }
 .document-principal{
     height: 800px;
@@ -312,8 +337,6 @@ table {
 .pdf-img img {
     max-width: auto;
 }
-/* .menu-lateral__navegacao a:first-child {
-} */
 
 .menu-lateral__navegacao img {
     
