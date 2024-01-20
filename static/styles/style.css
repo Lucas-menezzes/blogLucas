@@ -1,8 +1,5 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
+/* #### Não é esse #### */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -33,7 +30,7 @@ body {
     line-height: 1;
     font-family: 'Space Grotesk', sans-serif;
     min-height: 100vh;
-    background: linear-gradient(#000000,#626363,#ffffff);
+    background: linear-gradient(#ff0000,#626363,#ffffff);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -166,6 +163,8 @@ table {
 .card__info {
     font-size: 1.2rem;
     padding: 0 1.5rem 1rem 1.5rem;
+    width: 40px;
+    height: 40px;
 }
 
 .card__titulo {
@@ -193,6 +192,9 @@ table {
     display: flex;
     width: 100%;
 }
+.container {
+    margin-bottom: 20px; 
+}
 
 .imagem {
     display: flex;
@@ -203,14 +205,16 @@ table {
 .imagem__conteudo {
     background-color: transparent;
     display: flex;
-    flex-direction: column;
+    flex-direction: grid;
     border-radius: 20px 20px 0 0;
-    width: 950px;
+    width: 650px;
+    padding: auto;
 }
 
 .imagem__imagem {
-    width: 100%;
+    width: 50%;
     border-radius: 20px;
+    height: 500px;
 }
 
 .imagem__info {
@@ -220,6 +224,7 @@ table {
     align-items: center;
     margin-bottom: 1rem;
     margin-top: 1rem;
+
 }
 
 .imagem__texto {
@@ -228,6 +233,8 @@ table {
     justify-content: space-between;
     color: #FFFFFF;
     margin-top: 0.5rem;
+    max-height: 200px;
+    overflow: hidden;
 }
 
 .imagem__titulo {
@@ -238,10 +245,17 @@ table {
 
 .imagem__texto {
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .imagem__descricao {
     font-size: 0.7rem;
+}
+.contact-info img{
+    width: 40px;
+    height: 40px;
 }
 
 .menu-lateral {
@@ -272,12 +286,14 @@ table {
 
 .menu-lateral__navegacao img {
     margin-right: 1.5rem;
+
 }
 
 .pagina-inicial {
     max-width: 1440px;
     padding: 1.5rem;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .populares {
@@ -329,7 +345,8 @@ table {
 
 .principal {
     display: flex;
-    justify-content: space-between;
+    
+    justify-content: center;
 }
 
 .rodape {
@@ -381,4 +398,14 @@ table {
 .tags__tag:hover {
     border: 2px solid #7B78E5;
     cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .container{
+        flex-direction: grid;
+    }
+    .menu-lateral, .principal{
+        width: 30%;
+    }
+    
 }
