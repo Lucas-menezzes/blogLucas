@@ -56,6 +56,7 @@ table {
 
 .banner__imagem {
     width: 100%;
+    background-color: #041A37;
 }
 
 .banner__titulo {
@@ -188,6 +189,20 @@ table {
     font-size: 0.6em;
     margin-top: 0.8em;
 }
+.conteudo-principal{
+    flex-grow: 1;
+    display: flex;
+    overflow: auto;
+}
+
+.principal {
+    flex-wrap: wrap;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 15px; 
+    overflow: auto;
+    width: 100%;
+    height: 800px;
+}
 
 .galeria {
     display: flex;
@@ -199,22 +214,99 @@ table {
 }
 
 .imagem {
-    padding-inline: 20px;
+    /* padding-inline: 20px; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: auto;
+    height: 700px;
+    position: relative;
 
 }
 
 .imagem__conteudo {
     background-color: transparent;
-    position: relative;
     border-radius: 20px 20px 0 0;
-    width: 400px; 
-    padding-inline: 20px;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translateX(-50%); */
+    width: 80%; /* Largura em porcentagem */
+    max-width: 400px; /* Largura máxima para garantir responsividade */
+    height: 700px;
     box-sizing: border-box;
+    position: relative;
+    text-align: -webkit-center;
+    color: white;
+}
+.generator-container{
+    position: absolute;
+    width: 82%;
+    height: 200px;
+    /* top: 50%; */
+    /* left: 10%; */
+    /* transform: translate(-50%, -50%); */
+    font-size: 34px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #D9D9D9;
+    text-shadow: #626363;
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-generator{
+    font-size: 34px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
+    position: absolute;
+    background-color: transparent;
+    font-size: 1rem;
+    padding: 10px;
+    width: 300px;
+    max-width: 100%; /* ou ajuste conforme necessário */
+    top: 0;
+    margin-top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+}
+.form-generator label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.btn-generator{
+    margin-top: 10px;
+    background-color: #000147;
+    width: 90%;
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+
+}
+
+.form-cpf input{
+    border-radius: 3px;
+    width: 90%;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgba(255, 255, 255, 0.404);
+    margin: 5px;
+
+}
+.generated-cpf{
+    
+    border-radius: 3px;
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 .form-content{
@@ -239,7 +331,7 @@ table {
     color: white;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: rgba(241, 236, 236, 0.1);
+    background: rgba(255, 255, 255, 0.404);
     margin: 5px;
 }
 .form-content label{
@@ -264,15 +356,13 @@ table {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 5px;
 
-    /* top: 80%; */
 }
 .previsao-container {
     position: absolute;
     width: 82%;
     height: 200px;
-    top: 18%;
+    top: 130px;
     left: 50%;
-    /* height: 500px; */
     transform: translate(-50%, -50%);
     font-size: 24px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -294,7 +384,7 @@ table {
 .city {
     font-size: 24px;
     align-items: center;
-    /* margin-left: 60px; */
+
     text-align: center;
     margin-bottom: 4px;
 }
@@ -321,7 +411,6 @@ table {
     width: 320px;
     position: fixed;
     top: 250px;
-    /* left:-95px; */
     z-index: 1000; 
     display: flex;
     color: #fff;
@@ -330,15 +419,25 @@ table {
     align-items: center;
 }
 .temperatures1 {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
     margin-bottom: 10px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     border-radius: 6px;
     width: 280px;
-    height: 60px;
+
 }
+.card-temp {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    margin: 5px;
+}
+
 .temperatures2 {
     padding: 20px;
     position: top;
@@ -369,7 +468,10 @@ table {
     border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     height: 600px;
+    position: relative;
 }
+
+
 
 .imagem__info {
     font-size: 1.2rem;
@@ -377,11 +479,10 @@ table {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-top: 20px;
     width: 360px;
     height: 100px;
     
-
 }
 
 .imagem__titulo {
@@ -401,6 +502,9 @@ table {
     word-wrap: break-word; /* Adicione esta propriedade */
     overflow-wrap: break-word; /* Adicione esta propriedade */
     width: 100%;
+    padding-bottom: 50px;
+    text-align: left;
+
 }
 
 .imagem__descricao {
@@ -502,19 +606,6 @@ table {
 
 .populares__link:hover {
     background: transparent;
-}
-.conteudo-principal{
-    flex-grow: 1;
-    display: flex;
-    overflow: auto;
-}
-
-.principal {
-    flex-wrap: wrap;
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
-    gap: 15px; 
-    overflow: auto;
-    width: 100%;
 }
 
 .rodape {

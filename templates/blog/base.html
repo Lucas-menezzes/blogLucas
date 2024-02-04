@@ -6,14 +6,12 @@
 </head>
 <body>
     {% include "partials/_nav-lateral.html" %}
-    {% block content %}{% endblock %}
-    <div class="conteudo-principal">
-        <main class="principal" id="climate">
-        </main>
-    </div>
 
+    <div class="conteudo-principal">
+        {% block content %}{% endblock %}
+    </div>
+    <footer class="rodape">
+        <div>#$$</div>
+        <p class="rodape__texto">Desenvolvido por Lucas Menezes</p>
+    </footer>
 </body>
-<footer class="rodape">
-    <div>#</div>
-    <p class="rodape__texto">Desenvolvido por Lucas Menezes</p>
-</footer>

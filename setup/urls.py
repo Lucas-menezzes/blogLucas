@@ -1,7 +1,8 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from blog.views import index
+# from blog.views.views import index
+from blog.views.climate_view import project
 
 
 urlpatterns = [

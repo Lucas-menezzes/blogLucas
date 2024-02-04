@@ -4,96 +4,48 @@
     <div class="principal">
         <section class="imagem">
             <div class="imagem__conteudo">
-                <img class= "imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png"%}">
-                    <div class="previsao-container" id="previsao-container"> 
+                <img class="imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png" %}">
                     <div class="time">{{current_datetime}}</div>
-                        <form 
-                        action=""
+                    <form 
+                        id="form-generator"
+                        action={% url "gerar_cpf" %}
                         method="POST"
                         enctype="multipart/form-data"
-                        >
-                            <div class="form-content">
-                                <div class="form-group">
-                                    <label for="id_city"> Cidade</label>
-                                    <input type="text" class="input-city" name="id_city" maxlength="255" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_uf"> Estado </label>
-                                    <input type="text" class="input-uf" name="id_uf" maxlength="2" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_country"> País</label>
-                                    <input type="text" class="input-country" name="id_country" maxlength="255" required>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn" id="btn-clima"> Buscar </button>
-                                </div>
-                            </div>
-
-               {% comment %}  <div class="time">{{current_datetime}}</div>
-                    <p class="city">{{cityCurrent}} </p>
-                    <p class="temperature">{{ temperatureCurrent | default:"Erro ao obter dados do clima" | floatformat:0 }}º</p>
-                    <p class="description"> {{ descriptionCurrent | title }} </p>
-                    <p class="max_min"> Máx.:{{ maxima | floatformat:0}}º Mín.: {{ minima | floatformat:0 }}º </p>
-                    <section class="banner-temperatures">
-                        <a class="temperatures1"></a>
-                        <a class="temperatures2">
-                            <img class="icon-calendar" src="{% static '/assets/ícones/1x/calendar.png' %}" alt="Ícone">PREVISÃO PARA 5 DIAS
-                        </a>
-                    </section> {% endcomment %}
-                </div>
-                <div class="imagem__info">
-                    <div class="imagem__texto">
-                        <p class="imagem__titulo">Projeto API do Clima</p>
-                        <p class="imagem__descricao">12 de julho de 2023</p>
-                        <p class="imagem__texto">Podendo realizar pesquisa a temperatura, qualquer cidade através dos parâmetros city/uf/country.</p>
-                    
-                    </div>
-                </div>
-            </div>
-            <div class="imagem__conteudo">
-                <img class= "imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png"%}">
-                    <div class="previsao-container" id="previsao-container">
-                    <div class="time">{{current_datetime}}</div>
-                    
-                        <p class="city">{{cityCurrent}} </p>
-                        <p class="temperature">{{ temperatureCurrent | default:"Erro ao obter dados do clima" | floatformat:0 }}º</p>
-                        <p class="description"> {{ descriptionCurrent | title }} </p>
-                        <p class="max_min"> Máx.:{{ maxima | floatformat:0}}º Mín.: {{ minima | floatformat:0 }}º </p>
-                        <div class="banner-temperatures">
-                            <a class="temperatures1"></a>
-                            <a class="temperatures2">
-                                <img class="icon-calendar" src="{% static '/assets/ícones/1x/calendar.png' %}" alt="Ícone">PREVISÃO PARA 5 DIAS
-                            </a>
+                        novalidate
+                    >
+                    {% csrf_token %}
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <div class="form-generator">
+                        <div class="form-cpf">
+                            <label for="id_nome">Nome</label>
+                            <input type="text" class="input-name" name="name" maxlength="255" required>
                         </div>
+                        <div class="form-cpf">
+                            <label for="id_date"> Data Nascimento </label>
+                            <input type="date" class="input-date_birth" name="id_date_birth"  required>
+                        </div>
+                        <div class="form-cpf">
+                            <button type="submit" class="btn-generator" id="btn-gerar-cpf"> Gerar CPF </button>
+                        </div>
+
+                    <div href='' class="generated-cpf" id="generated-cpf">CPF = {{ cpf }}</div>
                     </div>
-               
-            
                 <div class="imagem__info">
                     <div class="imagem__texto">
-                        <p class="imagem__titulo">Projeto API do Clima</p>
-                        <p class="imagem__descricao">12 de julho de 2023</p>
-                        <p class="imagem__texto">Podendo realizar pesquisa a temperatura, qualquer cidade através dos parâmetros city/uf/country.</p>
-                    
-                    </div>
+                    <p class="imagem__titulo">Projeto gerador de CPF</p>
+                    <p class="imagem__descricao">30 de janeiro 2024</p>
+                    <p class="texto_desc">Podendo gerar cpf salvos no banco de dados junto com nome e data de nascimento.</p>                  
                 </div>
+                </div>         
+                </form>       
             </div>
         </section>
-        <section class="imagem">
-            
-        </section>
-        {% comment %} <section class="imagem">
-            <div class="imagem__conteudo">
-                <img class= "imagem__imagem" src="{% static "/assets/imagens/vscode.png"%}">
-                <div class="imagem__info">
-                    <div class="imagem__texto">
-                        <p class="imagem__titulo">“Projeto API do Clima</p>
-                        <p class="imagem__descricao">12 de julho de 2023</p>
-                        <p class="imagem__texto">Podendo realizar pesquisa a temperatura, qualquer cidade através dos parâmetros city/uf/country.</p>
-                    </div>
-                </div>
-            </div>
-        </section> {% endcomment %}
-        </main>
     </div>
+    {% comment %} <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalErro()">&times;</span>
+            <p id="error-message"></p>
+        </div>
+    </div> {% endcomment %}
+
 {% endblock %}

@@ -1,14 +1,78 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% block content %}
+    <div class="principal">
+        <section class="imagem">
+            <div class="imagem__conteudo">
+                <img class= "imagem__imagem" src="{% static image_path %}">
+                    <div class="previsao-container" id="previsao-container"> 
+                    <div class="time">{{current_datetime}}</div>
+                        <form 
+                        action=""
+                        method="POST"
+                        enctype="multipart/form-data"
+                        onsubmit="buscarClima(event)"
+                        >
+                        {% csrf_token %}
+                            <div class="form-content">
+                                <div class="form-group">
+                                    <label for="id_city"> Cidade</label>
+                                    <input type="text" class="input-city" name="id_city" maxlength="255" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_uf"> Estado </label>
+                                    <input type="text" class="input-uf" name="id_uf" maxlength="2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_country"> País</label>
+                                    <input type="text" class="input-country" name="id_country" maxlength="255" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn" id="btn-clima"> Buscar </button>
+                                </div>
+                            </div>
 
-{% include "partials/header.html" %}
+                </div>
+                <div class="imagem__info">
+                    <div class="imagem__texto">
+                        <p class="imagem__titulo">Projeto API do Clima</p>
+                        <p class="imagem__descricao">12 de julho de 2023</p>
+                        <p class="texto_desc">Podendo realizar pesquisa a temperatura, qualquer cidade através dos parâmetros city/uf/country.</p>
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="imagem__conteudo">
+                <img class= "imagem__imagem" src="{% static image_path %}">
+                    <div class="previsao-container" id="previsao-container">
+                    <div class="time">{{current_datetime}}</div>
+                        <p class="city">{{cityCurrent}} </p>
+                        <p class="temperature">{{ temperatureCurrent | default:"Erro ao obter dados do clima" | floatformat:0 }}º</p>
+                        <p class="description"> {{ descriptionCurrent | title }} </p>
+                        <p class="max_min"> Máx.:{{ first_max | floatformat:0}}º Mín.: {{ first_min | floatformat:0 }}º </p>
+                        <div class="banner-temperatures">
+                            <a class="temperatures1">
+                                <p class="card-temp">{{ day_data.day_of_week }}</p>
+                                <p class="card-temp">{{ day_of_week }}</p>
+                                <p class="card-temp">{{ day_of_week }}</p>
+                                <p class="card-temp">{{ day_of_week }}</p>
+                                <p class="card-temp">{{ day_of_week }}</p>
+                            </a> 
+                            <a class="temperatures2">
+                                <img class="icon-calendar" src="{% static '/assets/ícones/1x/calendar.png' %}" alt="Ícone">PREVISÃO PARA 5 DIAS   
+                            </a>
+                        </div>
 
-<footer class="rodape">
-    <div class="rodape__icones">
-        {% comment %} Colocar em MEUS LINKS {% endcomment %}
-        <a href="https://www.linkedin.com/in/lucas-menezes-885ab1205/" target=”_blank” >
-            <img src="{% static "/assets/ícones/1x/linkedin.png" %}" alt="ícone twitter">
-        </a>
+                    </div>  
+                <div class="imagem__info">
+                    <div class="imagem__texto">
+                        <p class="imagem__titulo">Projeto API do Clima</p>
+                        <p class="imagem__descricao">12 de julho de 2023</p>
+                        <p class="texto_desc">Podendo realizar pesquisa a temperatura, qualquer cidade através dos parâmetros city/uf/country.</p>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <p class="rodape__texto">Desenvolvido por Lucas Menezes</p>
-</footer>
+{% endblock %}
