@@ -1,3 +1,8 @@
+# def gerar_cpf(request):
+# #criar um cpf
+# #não pode ter o msm nome cadastrado
+# #não pode ter data futur
+
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 #import requests
@@ -9,14 +14,14 @@ from cpf_generator import CPF
 from blog.models import GeneratedCPF
 import json
 from django.views.decorators.http import require_POST
-from django.shortcuts import render
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 @csrf_exempt
 @require_POST
-# def gerar_cpf(request):
-# #criar um cpf
-# #não pode ter o msm nome cadastrado
-# #não pode ter data futur
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def gerar_cpf(request):
 #criar um cpf
 #não pode ter o msm nome cadastrado
@@ -76,23 +81,52 @@ def gerar_cpf(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def list_cpf(request):
+    search_name = request.GET.get('name', None)
+    search_id = request.GET.get('id', None)
+
     # Obter todos os objetos GeneratedCPF do banco de dados
     cpfs = GeneratedCPF.objects.all()
+    if search_name:
+        cpfs=cpfs.filter(name=search_name)
+    if search_id:
+        cpfs=cpfs.filter(id=search_id)
 
+    content_type = request.META.get('CONTENT_TYPE', '')
+
+    if 'application/json' in content_type:
+        cpfs_data = [
+            {
+                'id':cpf.id,
+                'name':cpf.name,
+                'date_birth':cpf.date_birth,
+                'cpf':cpf.generated_cpf,
+            }
+            for cpf in cpfs
+        ]
+        return JsonResponse({'cpfs': cpfs_data})
+    else:
+        return render(request, 'blog/pages/index.html', {'cpfs': cpfs})
     # Criar uma lista com as informações de cada objeto
-    cpfs_data = []
-    for cpf in cpfs:
-        cpf_info = {
-            'id': cpf.id,
-            'name': cpf.name,
-            'date_birth': cpf.date_birth,
-            'cpf': cpf.generated_cpf,
-        }
-        cpfs_data.append(cpf_info)
+    # cpfs_data = []
+    # for cpf in cpfs:
+    #     cpf_info = {
+    #         'id': cpf.id,
+    #         'name': cpf.name,
+    #         'date_birth': cpf.date_birth,
+    #         'cpf': cpf.generated_cpf,
+    #     }
+    #     cpfs_data.append(cpf_info)
 
-    # Retornar a lista como JSON
-    return JsonResponse({'cpfs': cpfs_data})
+    # # Retornar a lista como JSON
+    # return JsonResponse({'cpfs': cpfs_data})
+
+def search_cpf(request):
+    ...
 
 def index(request):
+
     return render(request, 'blog/pages/index.html')

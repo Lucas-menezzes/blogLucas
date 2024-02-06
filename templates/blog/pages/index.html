@@ -5,14 +5,14 @@
         <section class="imagem">
             <div class="imagem__conteudo">
                 <img class="imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png" %}">
-                    <div class="time">{{current_datetime}}</div>
-                    <form 
-                        id="form-generator"
-                        action={% url "gerar_cpf" %}
-                        method="POST"
-                        enctype="multipart/form-data"
-                        novalidate
-                    >
+                <div class="time">{{current_datetime}}</div>
+                <form 
+                    id="form-generator"
+                    action={% url "gerar_cpf" %}
+                    method="POST"
+                    enctype="multipart/form-data"
+                    novalidate
+                >
                     {% csrf_token %}
                     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                     <div class="form-generator">
@@ -27,25 +27,52 @@
                         <div class="form-cpf">
                             <button type="submit" class="btn-generator" id="btn-gerar-cpf"> Gerar CPF </button>
                         </div>
-
-                    <div href='' class="generated-cpf" id="generated-cpf">CPF = {{ cpf }}</div>
+                        <div class="generated-cpf" id="generated-cpf">CPF = {{ cpf }}</div>
                     </div>
+                </form>
                 <div class="imagem__info">
                     <div class="imagem__texto">
-                    <p class="imagem__titulo">Projeto gerador de CPF</p>
-                    <p class="imagem__descricao">30 de janeiro 2024</p>
-                    <p class="texto_desc">Podendo gerar cpf salvos no banco de dados junto com nome e data de nascimento.</p>                  
-                </div>
+                        <p class="imagem__titulo">Projeto gerador de CPF</p>
+                        <p class="imagem__descricao">30 de janeiro 2024</p>
+                        <p class="texto_desc">Podendo gerar cpf salvos no banco de dados junto com nome e data de nascimento.</p>                  
+                    </div>
                 </div>         
-                </form>       
-            </div>
+            </div>    
+            <div class="imagem__conteudo">
+                <img class="imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png" %}">
+                <div class="time">{{current_datetime}}</div>
+                <form id="form-cpf" class="form-cpf" method="get" action="{% url 'list_cpf' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-generator" >Listar CPF</button>
+                </form>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Data Nascimento</th>
+                            <th>Documento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cpf in cpfs %}
+                            <tr>
+                                <td>{{ cpf.id }}</td>
+                                <td>{{ cpf.name }}</td>
+                                <td>{{ cpf.date_birth }}</td>
+                                <td>{{ cpf.generated_cpf }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="imagem__info">
+                    <div class="imagem__texto">
+                        <p class="imagem__titulo">Projeto gerador de CPF</p>
+                        <p class="imagem__descricao">30 de janeiro 2024</p>
+                        <p class="texto_desc">Podendo gerar cpf salvos no banco de dados junto com nome e data de nascimento.</p>                  
+                    </div>
+                </div>      
+            </div> 
         </section>
     </div>
-    {% comment %} <div id="errorModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModalErro()">&times;</span>
-            <p id="error-message"></p>
-        </div>
-    </div> {% endcomment %}
-
 {% endblock %}
