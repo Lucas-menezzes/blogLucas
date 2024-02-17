@@ -26,3 +26,18 @@ class CreateUserView(View):
             return JsonResponse({'message': 'User created successfully'})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
+        
+class GetUserView(View):
+    def get(self, request):
+        try:
+            users = User.objects.all()
+            
+            serialized_users = []
+
+            for user in users:
+                serialized_user = {'username': user.username}
+                serialized_users.append(serialized_user)
+
+            return JsonResponse({'users': serialized_users}, status=200)
+        except Exception as e:
+            return JsonResponse({'errors':str(e)}, status=500)
