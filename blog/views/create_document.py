@@ -41,7 +41,7 @@ class GerarCPFView(APIView):
 
             #valida se data é maior que data atual
             if date_birth > currentDate:
-                return JsonResponse({"error":'data não pode ser maior que data atual'})
+                return JsonResponse({"error":'data não pode ser maior que data atual'}, status=400)
             #valida que o nome não pode ser vazio
             if not name:
                 return JsonResponse({'error': 'nome não pode ser vazio'}, status=400)
