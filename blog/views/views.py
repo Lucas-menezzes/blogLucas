@@ -13,3 +13,9 @@ def contact(request):
 
 def films(request):
     return render(request, 'blog/films/films.html')
+
+def login(request):
+    return render(request, 'blog/pages/login.html')
+
+def calculator(request):
+    return render(request, 'blog/pages/calculator.html')

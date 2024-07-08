@@ -2,7 +2,6 @@ from django.shortcuts import render
 import requests
 from datetime import datetime
 import locale
-from unidecode import unidecode
 
 def project(request):
     if request.method == 'POST':
@@ -11,7 +10,7 @@ def project(request):
         country = request.POST.get('id_country')
 
         #pega todo json da api
-        url_api = f'http://localhost:8001/get_weather/{city}/{uf}/{country}'
+        url_api = f'http://localhost:8000/get_weather/{city}/{uf}/{country}'
         current_datetime= datetime.now()
         formatTime = current_datetime.strftime('%H:%M')
         locale.setlocale(locale.LC_TIME, 'pt-br.UTF-8')
@@ -25,7 +24,6 @@ def project(request):
             requisition = requests.get(url_api)
             requisition.raise_for_status()
             data = requisition.json()
-            # print(data)
 
             if 'climate' in data:
                 temperature_data = data.get('climate')
@@ -63,8 +61,7 @@ def project(request):
 
                 })
             else:
-                return render(request, 'blog/pages/project.html', {'error_message': 'Fudeu'})
-                           
+                return render(request, 'blog/pages/project.html', {'error_message': 'Fudeu'})      
         except requests.exceptions.RequestException as erro:
             return render(request, 'blog/pages/project.html', {'error': str(erro)})
     return render(request, 'blog/pages/project.html', {})

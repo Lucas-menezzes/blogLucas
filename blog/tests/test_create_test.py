@@ -1,6 +1,4 @@
-from dotenv import load_dotenv
-load_dotenv()
-from django.urls import reverse
+# from django.urls import reverse
 import json
 from django.contrib.auth.models import User
 from configtest import api_client, create_token_url, create_user_url, fake

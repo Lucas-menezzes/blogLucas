@@ -1,5 +1,3 @@
-from dotenv import load_dotenv
-load_dotenv()
 import pytest
 from django.urls import reverse
 from faker import Faker

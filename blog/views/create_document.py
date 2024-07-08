@@ -1,8 +1,3 @@
-# def gerar_cpf(request):
-# #criar um cpf
-# #não pode ter o msm nome cadastrado
-# #não pode ter data futur
-
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime
@@ -111,23 +106,5 @@ class ListarCPFView(APIView):
         else:
             return render(request, 'blog/pages/index.html', {'cpfs': cpfs})
 
-        # Criar uma lista com as informações de cada objeto
-        # cpfs_data = []
-        # for cpf in cpfs:
-        #     cpf_info = {
-        #         'id': cpf.id,
-        #         'name': cpf.name,
-        #         'date_birth': cpf.date_birth,
-        #         'cpf': cpf.generated_cpf,
-        #     }
-        #     cpfs_data.append(cpf_info)
-
-        # # Retornar a lista como JSON
-        # return JsonResponse({'cpfs': cpfs_data})
-
     def search_cpf(request):
         ...
-
-    # def index(request):
-
-    #     return render(request, 'blog/pages/index.html')

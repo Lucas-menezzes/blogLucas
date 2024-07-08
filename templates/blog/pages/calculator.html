@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="principal">
+        <section class="imagem">
+            <div class="imagem__conteudo">
+                <img class="imagem__imagem">
+                <div class="previsao-container" id="login-container">
+                    <div class="imagem__texto">
+                        <h2 class="imagem__titulo">Calculador de Investimentos</h2>
+                        <form 
+                            action={% url "login" %}
+                            method="POST"
+                            enctype="multipart/form-data"
+                        >
+                            {% csrf_token %}
+                            <div class="form-content">
+                                <div class="form-group">
+                                    <label for="id_username">Patrimonio inicial</label>
+                                    <input type="text" class="input-city" name="username" maxlength="255" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_password">Aporte Mensal</label>
+                                    <input type="text" class="input-city" name="password" maxlength="255" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn" id="btn-login">Calcular</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% if form.errors %}
+                            <div class="form-errors">
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
