@@ -1,6 +1,6 @@
 import json
 from configtest import create_token, mock_generated_cpf, api_client, fake, list_cpf_urls, create_cpf_url, create_token_url, headers_auth, date_current
-# from test_create_test import test_create_token
+
 
 #Testa criação de cpf
 def test_create_cpf(api_client, create_cpf_url, headers_auth, date_current):

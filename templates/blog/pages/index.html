@@ -4,7 +4,7 @@
     <div class="principal">
         <section class="imagem">
             <div class="imagem__conteudo">
-                <img class="imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png" %}">
+                <img class="imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png" %}" alt="index">
                 <div class="time">{{current_datetime}}</div>
                 <form 
                     id="form-generator"
@@ -39,7 +39,7 @@
                 </div>         
             </div>    
             <div class="imagem__conteudo">
-                <img class="imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png" %}">
+                <img class="imagem__imagem" src="{% static "/assets/imagens/ceu-estrelado.png" %}" alt="index">
                 <div class="time">{{current_datetime}}</div>
                 <form id="form-cpf" class="form-cpf" method="get" action="{% url 'list_cpf' %}">
                     {% csrf_token %}
